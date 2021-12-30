@@ -3,10 +3,7 @@
 namespace App\Http\Controllers;
 
 use Auth;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
-use Ajifatur\Helpers\DateTimeExt;
 use App\Models\Attendance;
 use App\Models\Absent;
 use App\Models\Leave;

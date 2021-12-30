@@ -22,10 +22,11 @@ Route::group(['middleware' => ['member']], function(){
 	// Dashboard
     Route::get('/member', 'DashboardController@index')->name('member.dashboard');
 
+	// Position
+	Route::get('/member/position', 'PositionController@index')->name('member.position.index');
+
 	// Attendance
 	Route::get('/member/attendance/detail', 'AttendanceController@detail')->name('member.attendance.detail');
-	Route::post('/member/attendance/entry', 'AttendanceController@entry')->name('member.attendance.entry');
-	Route::post('/member/attendance/exit', 'AttendanceController@exit')->name('member.attendance.exit');
 });
 
 // Guest
