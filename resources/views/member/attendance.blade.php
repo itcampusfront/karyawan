@@ -80,6 +80,11 @@
                     <div class="tab-pane fade show active" role="tabpanel">
                         <div class="table-responsive">
                             @if($category == 1 || $category == 2)
+                                @if($count[2] > 0)
+                                <div class="alert alert-warning">
+                                    Anda bulan ini sudah terlambat <strong>{{ $count[2] }} kali</strong>. Yuk intropeksi diri lagi :)
+                                </div>
+                                @endif
                             <table class="table table-sm table-hover table-bordered" id="table">
                                 <thead>
                                     <tr>

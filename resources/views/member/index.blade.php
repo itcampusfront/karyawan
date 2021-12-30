@@ -69,7 +69,7 @@
                             <div class="card-body p-3">
                                 <p class="h2"><i class="bi-credit-card"></i></p>
                                 <h5 class="card-title mb-0">Rekap Gaji</h5>
-                                <p class="text-muted mt-1 mb-0">(Menu ini belum tersedia)</p>
+                                <p class="small text-muted mt-1 mb-0">(Menu ini belum tersedia)</p>
                             </div>
                         </div>
                     </a>
