@@ -26,7 +26,12 @@ Route::group(['middleware' => ['member']], function(){
 	Route::get('/member/position', 'PositionController@index')->name('member.position.index');
 
 	// Attendance
-	Route::get('/member/attendance/detail', 'AttendanceController@detail')->name('member.attendance.detail');
+	Route::get('/member/attendance', 'AttendanceController@index')->name('member.attendance.index');
+
+	// Absent
+	Route::get('/member/absent', 'AbsentController@index')->name('member.absent.index');
+	Route::get('/member/absent/create/{id}', 'AbsentController@create')->name('member.absent.create');
+	Route::post('/member/absent/store', 'AbsentController@store')->name('member.absent.store');
 });
 
 // Guest

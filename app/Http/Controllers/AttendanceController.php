@@ -12,12 +12,12 @@ use App\Models\User;
 class AttendanceController extends Controller
 {
     /**
-     * Display the specified resource.
+     * Display a listing of the resource.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function detail(Request $request)
+    public function index(Request $request)
     {
         // Set params
         $category = $request->query('category') != null ? $request->query('category') : 1;
