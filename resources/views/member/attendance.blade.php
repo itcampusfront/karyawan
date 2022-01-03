@@ -146,7 +146,7 @@
                     <table class="table table-sm table-hover table-bordered" id="table">
                         <thead class="bg-light">
                             <tr>
-                                <th width="20">No.></th>
+                                <th width="20">No.</th>
                                 <th>Tanggal Cuti</th>
                             </tr>
                         </thead>
