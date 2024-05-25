@@ -30,6 +30,14 @@
                     </div>
                 </div>
             </a>
+            <a href="{{ route('member.absent.create', ['id' => 3]) }}" class="col-md-4 col-sm-6 mb-3 mb-md-0 card-menu" data-bs-toggle="tooltip" title="Klik untuk melakukan izin">
+                <div class="card h-100 card-hover text-center">
+                    <div class="card-body p-3">
+                        <p class="h2"><i class="bi-award"></i></p>
+                        <h5 class="card-title mb-0">Lembur</h5>
+                    </div>
+                </div>
+            </a>
         </div>
     </div>
 </div>

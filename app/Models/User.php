@@ -38,6 +38,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function lembur()
+    {
+        return $this->hasMany(\App\Models\Lembur::class);
+    }
     
     /**
      * Get the group that owns the user.

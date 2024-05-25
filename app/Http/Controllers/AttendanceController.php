@@ -3,11 +3,15 @@
 namespace App\Http\Controllers;
 
 use Auth;
-use Illuminate\Http\Request;
-use App\Models\Attendance;
-use App\Models\Absent;
-use App\Models\Leave;
 use App\Models\User;
+use App\Models\Group;
+use App\Models\Leave;
+use App\Models\Absent;
+use App\Models\Office;
+use App\Models\WorkHour;
+use App\Models\Attendance;
+use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 
 class AttendanceController extends Controller
 {
@@ -73,6 +77,60 @@ class AttendanceController extends Controller
             'dt2' => $dt2,
             'attendances' => $attendances,
             'count' => $count,
+        ]);
+    }
+
+    public function monitoring(Request $request)
+    {
+
+        // Get the month and year
+        $month = $request->query('month') ?: date('m');
+        $year = $request->query('year') ?: date('Y');
+
+        // Get groups
+        $groups = Group::orderBy('name','asc')->get();
+        $offices = Office::where('name','LIKE',"%CN%")->get();
+
+
+        $month = $request->month;
+        $year = $request->year;
+        $office = $request->office;
+
+        $work_hours = WorkHour::where('office_id','=',$office)->where('position_id','=',4)->orderBy('name','asc')->get();
+        $group = Group::find(1);
+
+        // Set dates
+        $dates = [];
+        if($group) {
+            $dt1 = $month > 1 ? date('Y-m-d', strtotime($year.'-'.($month-1).'-'.$group->period_start)) : date('Y-m-d', strtotime(($year-1).'-12-'.$group->period_start));
+            $dt2 = date('Y-m-d', strtotime($year.'-'.$month.'-'.$group->period_end));
+            $d = $dt1;
+            while(date('d/m/Y', strtotime("-1 day", strtotime($d))) != date('d/m/Y', strtotime($dt2))) {
+                array_push($dates, date('d/m/Y', strtotime($d)));
+                $d = date('Y-m-d', strtotime("+1 day", strtotime($d)));
+            }
+        }
+        $month = array();
+        $month[1] = 'Januari';
+        $month[2] = 'Februari';
+        $month[3] = 'Maret';
+        $month[4] = 'April';
+        $month[5] = 'Mei';
+        $month[6] = 'Juni';
+        $month[7] = 'Juli';
+        $month[8] = 'Agustus';
+        $month[9] = 'September';
+        $month[10] = 'Oktober';
+        $month[11] = 'November';
+        $month[12] = 'Desember';
+       
+
+        // View
+        return view('member.monitoring', [
+            'offices' => $offices,
+            'month' => $month,
+            'work_hours' => $work_hours,
+            'dates' => $dates,
         ]);
     }
 }

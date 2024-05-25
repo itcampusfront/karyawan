@@ -6,6 +6,25 @@ use App\Models\Attendance;
 use App\Models\Role;
 use App\Models\Setting;
 
+
+if(!function_exists('change')) {
+    function change($date){
+
+            // If the date format is YYYY-MM-DD
+            if(is_int(strpos($date, '-'))) {
+                $explode = explode('-', $date);
+                return count($explode) == 3 ? $explode[2].'/'.$explode[1].'/'.$explode[0] : null;
+            }
+            // If the date format is DD/MM/YYYY
+            elseif(is_int(strpos($date, '/'))){
+                $explode = explode('/', $date);
+                return count($explode) == 3 ? $explode[2].'-'.$explode[1].'-'.$explode[0] : null;
+            }
+            else return null;
+        
+    }
+}
+
 // Role
 if(!function_exists('role')) {
     function role($key) {

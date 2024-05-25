@@ -56,6 +56,22 @@
                     </div>
                 </div>
             </a>
+            <a href="{{ route('member.reportDaily.index') }}" class="col-md-4 col-sm-6 mt-3 mb-md-0 card-menu">
+                <div class="card h-100 card-hover text-center">
+                    <div class="card-body p-3">
+                        <p class="h2"><i class="bi bi-tv"></i></p>
+                        <h5 class="card-title mb-0">Laporan Harian</h5>
+                    </div>
+                </div>
+            </a>
+            <a href="{{ route('member.monitoring.index') }}" class="col-md-4 col-sm-6 mt-3 mb-md-0 card-menu">
+                <div class="card h-100 card-hover text-center">
+                    <div class="card-body p-3">
+                        <p class="h2"><i class="bi bi-tv"></i></p>
+                        <h5 class="card-title mb-0">Monitoring Absensi</h5>
+                    </div>
+                </div>
+            </a>
         </div>
     </div>
 </div>
