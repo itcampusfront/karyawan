@@ -15,6 +15,10 @@ class CreateReportDailiesTable extends Migration
     {
         Schema::create('report_dailies', function (Blueprint $table) {
             $table->id();
+            $table->integer('user_id');
+            $table->text('report');
+            $table->date('date');
+            $table->text('note');
             $table->timestamps();
         });
     }

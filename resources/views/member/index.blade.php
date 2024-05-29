@@ -23,22 +23,12 @@
         </div>
         @endif
         <div class="row justify-content-center">
-            <a href="{{ route('member.position.index') }}" class="col-md-4 col-sm-6 mb-3 mb-md-0 card-menu">
-                <div class="card h-100 card-hover text-center">
-                    <div class="card-body p-3">
-                        <p class="h2"><i class="bi-person-workspace"></i></p>
-                        <h5 class="card-title mb-0">Deskripsi Jabatan</h5>
-                    </div>
-                </div>
-            </a>
-            <a href="{{ route('member.attendance.index') }}" class="col-md-4 col-sm-6 mb-3 mb-md-0 card-menu">
-                <div class="card h-100 card-hover text-center">
-                    <div class="card-body p-3">
-                        <p class="h2"><i class="bi-table"></i></p>
-                        <h5 class="card-title mb-0">Rekap Absensi</h5>
-                    </div>
-                </div>
-            </a>
+            @include('member.komponen.card', ['title' => 'Deskripsi Jabatan', 'icon' => 'bi-person-workspace', 'route' => route('member.position.index')])
+            @include('member.komponen.card', ['title' => 'Rekap Absensi', 'icon' => 'bi-table', 'route' => route('member.attendance.index')])
+            @include('member.komponen.card', ['title' => 'Izin Tidak Hadir', 'icon' => 'bi-envelope-open', 'route' => route('member.absent.index')])
+            @include('member.komponen.card', ['title' => 'Laporan Harian', 'icon' => 'bi bi-tv', 'route' => route('member.reportDaily.index')])
+            @include('member.komponen.card', ['title' => 'Monitoring Absensi', 'icon' => 'bi bi-tv', 'route' => route('member.monitoring.index')])
+
             <a href="#" class="col-md-4 col-sm-6 mb-3 mb-md-0 card-menu d-none">
                 <div class="card h-100 card-hover text-center">
                     <div class="card-body p-3">
@@ -48,30 +38,7 @@
                     </div>
                 </div>
             </a>
-            <a href="{{ route('member.absent.index') }}" class="col-md-4 col-sm-6 mb-3 mb-md-0 card-menu">
-                <div class="card h-100 card-hover text-center">
-                    <div class="card-body p-3">
-                        <p class="h2"><i class="bi-envelope-open"></i></p>
-                        <h5 class="card-title mb-0">Izin Tidak Hadir</h5>
-                    </div>
-                </div>
-            </a>
-            <a href="{{ route('member.reportDaily.index') }}" class="col-md-4 col-sm-6 mt-3 mb-md-0 card-menu">
-                <div class="card h-100 card-hover text-center">
-                    <div class="card-body p-3">
-                        <p class="h2"><i class="bi bi-tv"></i></p>
-                        <h5 class="card-title mb-0">Laporan Harian</h5>
-                    </div>
-                </div>
-            </a>
-            <a href="{{ route('member.monitoring.index') }}" class="col-md-4 col-sm-6 mt-3 mb-md-0 card-menu">
-                <div class="card h-100 card-hover text-center">
-                    <div class="card-body p-3">
-                        <p class="h2"><i class="bi bi-tv"></i></p>
-                        <h5 class="card-title mb-0">Monitoring Absensi</h5>
-                    </div>
-                </div>
-            </a>
+
         </div>
     </div>
 </div>

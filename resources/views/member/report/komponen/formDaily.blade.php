@@ -1,10 +1,10 @@
 <div class="row mb-3">
-    <div class="col-10">
+    <div class="col-11">
         <div class="input-group input-group-sm">
-            <input type="text" name="text{{ $index }}" class="form-control form-control-sm {{ $errors->has('text') ? 'border-danger' : '' }}" value="{{ old('text') }}" autocomplete="off">
+            <input type="text" placeholder="{{ $index+1 }}. Keterangan poin laporan..." name="report[]" class="form-control form-control-sm" value="{{ old('report'.$index) }}" autocomplete="off">
         </div>
     </div>
-    <div class="col-2" >
-        <input  type="number" min="1" name="score{{ $index }}" maxlength="3" max="100" id="score" onchange="handleChange(this);" />
+    <div class="col-1" >
+        <input  type="number" min="1" name="score[]" maxlength="3" max="100" id="score" onchange="handleChange(this);" />
     </div>
 </div>

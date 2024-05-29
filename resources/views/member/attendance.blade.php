@@ -11,9 +11,18 @@
             <div class="row g-2 align-items-center">
                 <div class="col-auto">
                     <select name="month" class="form-select form-select-sm" data-bs-toggle="tooltip" title="Pilih Periode Bulan">
-                        @for($i=1; $i<=12; $i++)
-                        <option value="{{ $i }}" {{ $month == $i ? 'selected' : '' }}>{{ \Ajifatur\Helpers\DateTimeExt::month($i) }}</option>
-                        @endfor
+                        <option value="1" {{ request('month') == '1' ? 'selected' : '' }}>Januari</option>
+                        <option value="2" {{ request('month') == '2' ? 'selected' : '' }}>Februari</option>
+                        <option value="3" {{ request('month') == '3' ? 'selected' : '' }}>Maret</option>
+                        <option value="4" {{ request('month') == '4' ? 'selected' : '' }}>April</option>
+                        <option value="5" {{ request('month') == '5' ? 'selected' : '' }}>Mei</option>
+                        <option value="6" {{ request('month') == '6' ? 'selected' : '' }}>Juni</option>
+                        <option value="7" {{ request('month') == '7' ? 'selected' : '' }}>Juli</option>
+                        <option value="8" {{ request('month') == '8' ? 'selected' : '' }}>Agustus</option>
+                        <option value="9" {{ request('month') == '9' ? 'selected' : '' }}>September</option>
+                        <option value="10" {{ request('month') == '10' ? 'selected' : '' }}>Oktober</option>
+                        <option value="11" {{ request('month') == '11' ? 'selected' : '' }}>November</option>
+                        <option value="12" {{ request('month') == '12' ? 'selected' : '' }}>Desember</option>
                     </select>
                 </div>
                 <div class="col-auto">
