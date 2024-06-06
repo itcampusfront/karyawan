@@ -49,7 +49,7 @@
         </form>
         @else
         <div class="alert alert-danger alert-dismissible text-center fade show" role="alert">
-            Anda Sudah Menambahkan Daily Activity Progress
+            Anda Sudah Menambahkan Daily Activity Progress Hari ini
             <br><br>
             <a href="{{ route('member.dashboard') }}" class="btn btn-danger btn-sm"></i> Kembali</a>
         </div>
