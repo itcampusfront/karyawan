@@ -16,9 +16,21 @@
         @endif
         <form method="post" action="{{ route('member.reportDaily.store') }}" enctype="multipart/form-data">
             @csrf
-            @for($i=0; $i<15; $i++)
-                @include('member.report.komponen.formDaily', ['index' => $i])
-            @endfor
+
+            @foreach ($position_job as $key=>$detail)
+                <div class="row mb-3">
+                    <div class="col-11">
+                        <div class="input-group input-group-sm">
+                            <input type="hidden" value="{{ $detail->id }}" name="id[]">
+                            <input type="text" value="{{ ($key+1).'. '.$detail->name }}" class="form-control form-control-sm" disabled>
+                        </div>
+                    </div>
+                    <div class="col-1" >
+                        <input  type="number" min="1" name="score[]" maxlength="3" max="100" id="score" onchange="handleChange(this);" />
+                    </div>
+                </div>   
+            @endforeach
+
             <div class="row mb-3">
                 <div class="col-12">
                     <label for="note" class="mb-2 mt-3">Keterangan tambahan : </label>
@@ -33,7 +45,7 @@
 
             <hr>
             <button type="submit" class="btn btn-primary"><i class="bi bi-save me-1"></i> Submit</button>
-            <a href="{{ route('member.absent.index') }}" class="btn btn-secondary"><i class="bi bi-arrow-left me-1"></i> Kembali</a>
+            <a href="{{ route('member.dashboard') }}" class="btn btn-secondary"><i class="bi bi-arrow-left me-1"></i> Kembali</a>
         </form>
         @else
         <div class="alert alert-danger alert-dismissible text-center fade show" role="alert">
@@ -46,27 +58,34 @@
 
     @if($status == 1)
     <div class="card-body">
-
         <table class="table table-hover table-bordered" id="table">
             <tbody>
                 <tr>
                     <td>Nama</td>
-                    <td>: {{ $data->user->name }}</td>
+                    <td> {{ $data->user->name }}</td>
                 </tr>
                 <tr>
                     <td >Tanggal</td>
-                    <td >: {{ $data->date }}</td>
+                    <td > {{ $data->date }}</td>
                 </tr>
                 <tr>
                     <td>Keterangan</td>
-                    <td>: {{ $data->note }}</td>
+                    <td> {{ $data->note }}</td>
                 </tr>
                 <tr>
                     <td>Report DAP</td>
                     <td>
-                        @for($i=0;$i<count($reports);$i++)
-                            <li>{{ $reports[$i]->report }} <span style="color: green">({{ $reports[$i]->score }} %)</span></li>
-                        @endfor
+                        <table>
+                            <tbody>
+                                @foreach ($position_job as $key=>$duty)
+                                    <tr>
+                                        <td>{{ $duty->id == $reports[$key]->report ? $duty->name : '' }} </td>
+                                        <td>: <span style="color: green"> ( {{ $reports[$key]->score == null ? '0' : $reports[$key]->score }} %)</span></td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        
                     </td>
                 </tr>
             </tbody>

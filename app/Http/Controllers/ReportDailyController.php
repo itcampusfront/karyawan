@@ -15,6 +15,7 @@ class ReportDailyController extends Controller
      */
     public function index()
     {
+        $position_job = Auth::user()->position->duties_and_responsibilities;
         $cek_date = ReportDaily::where('user_id', Auth::user()->id)->where('date',date('Y-m-d'))->first();
         if($cek_date){
             $status = 1;
@@ -22,10 +23,12 @@ class ReportDailyController extends Controller
         }
         else{
             $status = 0;
+            $report_decode = null;
         }
         return view('member.report.index',[
             'status' => $status,
             'data'=>$cek_date,
+            'position_job' => $position_job,
             'reports' => $report_decode
         ]);
     }
@@ -48,7 +51,7 @@ class ReportDailyController extends Controller
      */
     public function store(Request $request)
     {
-        
+        // dd($request->all());
         $cek_date = ReportDaily::where('user_id', Auth::user()->id)->where('date',date('Y-m-d'))->first();
 
         if($cek_date){
@@ -56,31 +59,21 @@ class ReportDailyController extends Controller
             return redirect()->route('member.reportDaily.index')->with(['message' => 'Data sudah ada.']);
         }
         else{
-            dd('false');
+            // dd('false');
             $score = $request->score;
-            $report = $request->report;
+            $id_report = $request->id;
             $note = $request->note;
     
-            $count_score = 0;
-            $count_report = 0;
-    
-            for($i=0;$i<15;$i++){
-                if($report[$i] != null){
-                    $count_report++;
-                    $count_score++;
-                }
-            }
-    
             $array_save = array();
-            for($i=0;$i<$count_report;$i++){
-                $array_save[$i]['report'] = $report[$i];
+            for($i=0;$i<count($request->id);$i++){
+                $array_save[$i]['report'] = $id_report[$i];
                 $array_save[$i]['score'] = $score[$i];
             }
-    
     
             $daily = new ReportDaily;
             $daily->user_id = Auth::user()->id;
             $daily->note = $note;
+            $daily->position_id = Auth::user()->position_id;
             $daily->date = date('Y-m-d');
             $daily->report = json_encode($array_save);
             $daily->save();
