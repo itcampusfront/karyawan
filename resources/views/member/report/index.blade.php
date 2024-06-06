@@ -19,14 +19,14 @@
 
             @foreach ($position_job as $key=>$detail)
                 <div class="row mb-3">
-                    <div class="col-11">
+                    <div class="col-10">
                         <div class="input-group input-group-sm">
                             <input type="hidden" value="{{ $detail->id }}" name="id[]">
                             <input type="text" value="{{ ($key+1).'. '.$detail->name }}" class="form-control form-control-sm" disabled>
                         </div>
                     </div>
-                    <div class="col-1" >
-                        <input  type="number" min="1" name="score[]" maxlength="3" max="100" id="score" onchange="handleChange(this);" />
+                    <div class="col-2" >
+                        <input type="text" min="1" name="score[]" id="score" />
                     </div>
                 </div>   
             @endforeach
@@ -80,7 +80,7 @@
                                 @foreach ($position_job as $key=>$duty)
                                     <tr>
                                         <td>{{ $duty->id == $reports[$key]->report ? $duty->name : '' }} </td>
-                                        <td>: <span style="color: green"> ( {{ $reports[$key]->score == null ? '0' : $reports[$key]->score }} %)</span></td>
+                                        <td>: <span style="color: green"> {{ $reports[$key]->score == null ? '0' : $reports[$key]->score }} / {{ $duty->target }}  ({{ ($reports[$key]->score / $duty->target) * 100 }} %)</span></td>
                                     </tr>
                                 @endforeach
                             </tbody>
