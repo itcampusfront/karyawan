@@ -15,7 +15,6 @@ class ReportDailyController extends Controller
      */
     public function index()
     {
-        $position_job = Auth::user()->position->duties_and_responsibilities;
         $cek_date = ReportDaily::where('user_id', Auth::user()->id)->where('date',date('Y-m-d'))->first();
         if($cek_date){
             $status = 1;
@@ -25,9 +24,14 @@ class ReportDailyController extends Controller
             $status = 0;
             $report_decode = null;
         }
+        $position_job = Auth::user()->jabatanAttribute->divisi;
+        $detail_job = json_decode($position_job->tugas);
+        $count = count($detail_job->tugas);
         return view('member.report.index',[
             'status' => $status,
             'data'=>$cek_date,
+            'count' => $count,
+            'detail_job' => $detail_job,
             'position_job' => $position_job,
             'reports' => $report_decode
         ]);
@@ -66,7 +70,6 @@ class ReportDailyController extends Controller
     
             $array_save = array();
             for($i=0;$i<count($request->id);$i++){
-                $array_save[$i]['report'] = $id_report[$i];
                 $array_save[$i]['score'] = $score[$i];
             }
     

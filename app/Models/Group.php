@@ -23,6 +23,11 @@ class Group extends Model
      */
     protected $fillable = ['name', 'period_start', 'period_end'];
 
+    public function divisi()
+    {
+        return $this->hasOne(\App\Models\Divisi::class);
+    }
+
     /**
      * Get the users for the group.
      */

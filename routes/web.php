@@ -36,12 +36,12 @@ Route::group(['middleware' => ['member']], function(){
 	Route::post('/member/absent/store', 'AbsentController@store')->name('member.absent.store');
 
 	//reportDaily
-	Route::get('/member/reportDaily', 'ReportDailyController@index')->name('member.reportDaily.index');
-	Route::get('/member/reportDaily/create', 'ReportDailyController@create')->name('member.reportDaily.create');
-	Route::post('/member/reportDaily/store', 'ReportDailyController@store')->name('member.reportDaily.store');
-	Route::post('/member/reportDaily/delete', 'ReportDailyController@delete')->name('member.reportDaily.delete');
-	Route::get('/member/reportDaily/edit/{id}', 'ReportDailyController@edit')->name('member.reportDaily.edit');
-	Route::post('/member/reportDaily/update', 'ReportDailyController@updateoupdate')->name('member.reportDaily.update');
+	Route::get('/member/report', 'ReportDailyController@index')->name('member.reportDaily.index');
+	Route::get('/member/report/create', 'ReportDailyController@create')->name('member.reportDaily.create');
+	Route::post('/member/report/store', 'ReportDailyController@store')->name('member.reportDaily.store');
+	Route::post('/member/report/delete', 'ReportDailyController@delete')->name('member.reportDaily.delete');
+	Route::get('/member/report/edit/{id}', 'ReportDailyController@edit')->name('member.reportDaily.edit');
+	Route::post('/member/report/update', 'ReportDailyController@updateoupdate')->name('member.reportDaily.update');
 });
 
 // Guest

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\ReportDaily;
+use App\Models\JabatanAttribute;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -40,6 +41,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function jabatanAttribute(){
+        return $this->hasOne(JabatanAttribute::class);
+    }
     public function reportDaily()
     {
         return $this->hasMany(ReportDaily::class);

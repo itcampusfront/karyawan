@@ -17,19 +17,19 @@
         <form method="post" action="{{ route('member.reportDaily.store') }}" enctype="multipart/form-data">
             @csrf
 
-            @foreach ($position_job as $key=>$detail)
+            @for($i=0; $i < $count; $i++)
                 <div class="row mb-3">
                     <div class="col-10">
                         <div class="input-group input-group-sm">
-                            <input type="hidden" value="{{ $detail->id }}" name="id[]">
-                            <input type="text" value="{{ ($key+1).'. '.$detail->name }}" class="form-control form-control-sm" disabled>
+                            <input type="hidden" value="{{ $i }}" name="id[]">
+                            <input type="text" value="{{ $detail_job->tugas[$i] }}" class="form-control form-control-sm" disabled>
                         </div>
                     </div>
                     <div class="col-2" >
                         <input type="text" min="1" name="score[]" id="score" />
                     </div>
                 </div>   
-            @endforeach
+            @endfor
 
             <div class="row mb-3">
                 <div class="col-12">
@@ -77,12 +77,12 @@
                     <td>
                         <table>
                             <tbody>
-                                @foreach ($position_job as $key=>$duty)
+                                @for($j=0; $j < $count; $j++)
                                     <tr>
-                                        <td>{{ $duty->id == $reports[$key]->report ? $duty->name : '' }} </td>
-                                        <td>: <span style="color: green"> {{ $reports[$key]->score == null ? '0' : $reports[$key]->score }} / {{ $duty->target }}  ({{ ($reports[$key]->score / $duty->target) * 100 }} %)</span></td>
+                                        <td>{{ $detail_job->tugas[$j] }} </td>
+                                        <td>: {{ $reports[$j]->score }}<span style="color: green"> / {{ $detail_job->target[$j] }} </span></td>
                                     </tr>
-                                @endforeach
+                                @endfor
                             </tbody>
                         </table>
                         
