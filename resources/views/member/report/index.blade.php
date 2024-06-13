@@ -8,45 +8,54 @@
     <div class="card-header"><h5 class="text-center mb-0">Daily Activity Progress</h5></div>
     <div class="card-body">
         @if($status == 0)
-        @if(Session::get('message'))
-        <div class="alert alert-danger alert-dismissible text-center fade show" role="alert">
-            {{ Session::get('message') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        @endif
-        <form method="post" action="{{ route('member.reportDaily.store') }}" enctype="multipart/form-data">
-            @csrf
+            @if(Session::get('message'))
+            <div class="alert alert-danger alert-dismissible text-center fade show" role="alert">
+                {{ Session::get('message') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            @endif
+            @if(Auth::user()->jabatanAttribute != null)
+                <form method="post" action="{{ route('member.reportDaily.store') }}" enctype="multipart/form-data">
+                    @csrf
 
-            @for($i=0; $i < $count; $i++)
-                <div class="row mb-3">
-                    <div class="col-10">
-                        <div class="input-group input-group-sm">
-                            <input type="hidden" value="{{ $i }}" name="id[]">
-                            <input type="text" value="{{ $detail_job->tugas[$i] }}" class="form-control form-control-sm" disabled>
+                    @for($i=0; $i < $count; $i++)
+                        <div class="row mb-3">
+                            <div class="col-10">
+                                <div class="input-group input-group-sm">
+                                    <input type="hidden" value="{{ $i }}" name="id[]">
+                                    <input type="text" value="{{ $detail_job->tugas[$i] }}" class="form-control form-control-sm" disabled>
+                                </div>
+                            </div>
+                            <div class="col-2" >
+                                <input type="text" min="1" name="score[]" id="score" />
+                            </div>
+                        </div>   
+                    @endfor
+
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <label for="note" class="mb-2 mt-3">Keterangan tambahan : </label>
+                            <textarea style="width: 100%" name="note" id="note" rows="10"></textarea>
                         </div>
                     </div>
-                    <div class="col-2" >
-                        <input type="text" min="1" name="score[]" id="score" />
+                    <div class="row mb-3">
+                        <div class="col-12">
+                        </div>
                     </div>
-                </div>   
-            @endfor
+                    <div id="spreadsheet"></div>
 
-            <div class="row mb-3">
-                <div class="col-12">
-                    <label for="note" class="mb-2 mt-3">Keterangan tambahan : </label>
-                    <textarea style="width: 100%" name="note" id="note" rows="10"></textarea>
+                    <hr>
+                    <button type="submit" class="btn btn-primary"><i class="bi bi-save me-1"></i> Submit</button>
+                    <a href="{{ route('member.dashboard') }}" class="btn btn-secondary"><i class="bi bi-arrow-left me-1"></i> Kembali</a>
+                </form>
+            @else
+                <div class="alert alert-danger alert-dismissible text-center fade show" role="alert">
+                    Data Kosong 
+                    <br><br>         
+                    <a href="{{ route('member.dashboard') }}" class="btn btn-danger btn-sm"></i> Kembali</a>
+                    
                 </div>
-            </div>
-            <div class="row mb-3">
-                <div class="col-12">
-                </div>
-            </div>
-            <div id="spreadsheet"></div>
-
-            <hr>
-            <button type="submit" class="btn btn-primary"><i class="bi bi-save me-1"></i> Submit</button>
-            <a href="{{ route('member.dashboard') }}" class="btn btn-secondary"><i class="bi bi-arrow-left me-1"></i> Kembali</a>
-        </form>
+            @endif
         @else
         <div class="alert alert-danger alert-dismissible text-center fade show" role="alert">
             Anda Sudah Menambahkan Daily Activity Progress Hari ini

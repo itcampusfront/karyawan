@@ -24,17 +24,26 @@ class ReportDailyController extends Controller
             $status = 0;
             $report_decode = null;
         }
-        $position_job = Auth::user()->jabatanAttribute->divisi;
-        $detail_job = json_decode($position_job->tugas);
-        $count = count($detail_job->tugas);
-        return view('member.report.index',[
-            'status' => $status,
-            'data'=>$cek_date,
-            'count' => $count,
-            'detail_job' => $detail_job,
-            'position_job' => $position_job,
-            'reports' => $report_decode
-        ]);
+        if(Auth::user()->jabatanAttribute != null){
+            $position_job = Auth::user()->jabatanAttribute->divisi;
+            $detail_job = json_decode($position_job->tugas);
+            $count = count($detail_job->tugas);
+            return view('member.report.index',[
+                'status' => $status,
+                'data'=>$cek_date,
+                'count' => $count != null ? $count : 0,
+                'detail_job' => $detail_job != null ? $detail_job : [],
+                'position_job' => $position_job != null ? $position_job : [],
+                'reports' => $report_decode
+            ]);
+        }else{
+            return view('member.report.index',[
+                'status' => $status,
+                'data'=>$cek_date,
+                'reports' => $report_decode
+            ]);
+        }
+
     }
 
     /**
