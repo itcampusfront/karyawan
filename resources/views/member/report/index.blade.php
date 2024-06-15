@@ -22,12 +22,12 @@
                         <div class="row mb-3">
                             <div class="col-10">
                                 <div class="input-group input-group-sm">
-                                    <input type="hidden" value="{{ $i }}" name="id[]">
-                                    <input type="text" value="{{ $detail_job->tugas[$i] }}" class="form-control form-control-sm" disabled>
+                                    <input type="hidden" value="{{ $detail_job[$i]->id_tugas }}" name="id[]">
+                                    <input type="text" value="{{ $detail_job[$i]->tugas }}" class="form-control form-control-sm" disabled>
                                 </div>
                             </div>
                             <div class="col-2" >
-                                <input type="text" min="1" name="score[]" id="score" />
+                                <input placeholder="score...." type="text" name="score[]" id="score" />
                             </div>
                         </div>   
                     @endfor
@@ -88,8 +88,10 @@
                             <tbody>
                                 @for($j=0; $j < $count; $j++)
                                     <tr>
-                                        <td>{{ $detail_job->tugas[$j] }} </td>
-                                        <td>: {{ $reports[$j]->score }}<span style="color: green"> / {{ $detail_job->target[$j] }} </span></td>
+                                        @if($detail_job[$j]->id_tugas == $reports[$j]->id_tugas)
+                                        <td>{{ $detail_job[$j]->tugas }} </td>
+                                        <td>: {{ $reports[$j]->score }} </td>
+                                        @endif
                                     </tr>
                                 @endfor
                             </tbody>
@@ -146,6 +148,9 @@
 
 <script type="text/javascript">
 
+    $("#score").keyup(function() {
+        $("#score").val(this.value.match(/^[0-9-+%()]*/));
+    });
     
     function handleChange(input) {
         if (input.value < 0) input.value = 0;

@@ -24,10 +24,11 @@ class ReportDailyController extends Controller
             $status = 0;
             $report_decode = null;
         }
+        
         if(Auth::user()->jabatanAttribute != null){
             $position_job = Auth::user()->jabatanAttribute->divisi;
             $detail_job = json_decode($position_job->tugas);
-            $count = count($detail_job->tugas);
+            $count = count($detail_job);
             return view('member.report.index',[
                 'status' => $status,
                 'data'=>$cek_date,
@@ -72,20 +73,19 @@ class ReportDailyController extends Controller
             return redirect()->route('member.reportDaily.index')->with(['message' => 'Data sudah ada.']);
         }
         else{
-            // dd('false');
             $score = $request->score;
             $id_report = $request->id;
             $note = $request->note;
     
             $array_save = array();
-            for($i=0;$i<count($request->id);$i++){
+            for($i=0;$i<count($id_report);$i++){
+                $array_save[$i]['id_tugas'] = $id_report[$i];
                 $array_save[$i]['score'] = $score[$i];
             }
     
             $daily = new ReportDaily;
             $daily->user_id = Auth::user()->id;
             $daily->note = $note;
-            $daily->position_id = Auth::user()->position_id;
             $daily->date = date('Y-m-d');
             $daily->report = json_encode($array_save);
             $daily->save();
