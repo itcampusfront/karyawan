@@ -42,6 +42,8 @@ Route::group(['middleware' => ['member']], function(){
 	Route::post('/member/report/delete', 'ReportDailyController@delete')->name('member.reportDaily.delete');
 	Route::get('/member/report/edit/{id}', 'ReportDailyController@edit')->name('member.reportDaily.edit');
 	Route::post('/member/report/update', 'ReportDailyController@updateoupdate')->name('member.reportDaily.update');
+
+	Route::get('/member/report/reportlist', 'ReportDailyController@reportList')->name('member.reportDaily.reportlist');
 });
 
 // Guest

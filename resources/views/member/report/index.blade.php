@@ -14,7 +14,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
             @endif
-            @if(Auth::user()->jabatanAttribute != null)
+            @if(Auth::user()->jabatanAttribute->divisi != null)
                 <form method="post" action="{{ route('member.reportDaily.store') }}" enctype="multipart/form-data">
                     @csrf
 
@@ -34,7 +34,7 @@
 
                     <div class="row mb-3">
                         <div class="col-12">
-                            <label for="note" class="mb-2 mt-3">Keterangan tambahan : </label>
+                            <label for="note" class="mb-2 mt-3">Keterangan Tugas lain : </label>
                             <textarea style="width: 100%" name="note" id="note" rows="10"></textarea>
                         </div>
                     </div>
@@ -65,7 +65,7 @@
         @endif
     </div>
 
-    @if($status == 1)
+    @if($status == 1 )
     <div class="card-body">
         <table class="table table-hover table-bordered" id="table">
             <tbody>
@@ -102,7 +102,7 @@
             </tbody>
         </table>
     </div>
-
+        
     @endif
 </div>
 

@@ -16,7 +16,8 @@ class ReportDailyController extends Controller
     public function index()
     {
         $cek_date = ReportDaily::where('user_id', Auth::user()->id)->where('date',date('Y-m-d'))->first();
-        if($cek_date){
+        $position_job = Auth::user()->jabatanAttribute->divisi;
+        if($cek_date && $position_job->id != 18){
             $status = 1;
             $report_decode = json_decode($cek_date->report);
         }
@@ -25,8 +26,8 @@ class ReportDailyController extends Controller
             $report_decode = null;
         }
         
-        if(Auth::user()->jabatanAttribute != null){
-            $position_job = Auth::user()->jabatanAttribute->divisi;
+        if($position_job != null){
+            
             $detail_job = json_decode($position_job->tugas);
             $count = count($detail_job);
             return view('member.report.index',[
@@ -39,22 +40,13 @@ class ReportDailyController extends Controller
             ]);
         }else{
             return view('member.report.index',[
+                'count' => null ,
                 'status' => $status,
                 'data'=>$cek_date,
                 'reports' => $report_decode
             ]);
         }
 
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -76,7 +68,7 @@ class ReportDailyController extends Controller
             $score = $request->score;
             $id_report = $request->id;
             $note = $request->note;
-    
+            $division_id = Auth::user()->jabatanAttribute->division_id;
             $array_save = array();
             for($i=0;$i<count($id_report);$i++){
                 $array_save[$i]['id_tugas'] = $id_report[$i];
@@ -85,6 +77,7 @@ class ReportDailyController extends Controller
     
             $daily = new ReportDaily;
             $daily->user_id = Auth::user()->id;
+            $daily->division_id = $division_id;
             $daily->note = $note;
             $daily->date = date('Y-m-d');
             $daily->report = json_encode($array_save);
@@ -98,48 +91,13 @@ class ReportDailyController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\ReportDaily  $reportDaily
-     * @return \Illuminate\Http\Response
-     */
-    public function show(ReportDaily $reportDaily)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\ReportDaily  $reportDaily
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(ReportDaily $reportDaily)
+    public function reportList(Request $request)
     {
-        //
-    }
+        $reports = ReportDaily::where('user_id', Auth::user()->id)->get();
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\ReportDaily  $reportDaily
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, ReportDaily $reportDaily)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\ReportDaily  $reportDaily
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(ReportDaily $reportDaily)
-    {
-        //
+        return view('member.report.reportlist',[
+            'reports' => $reports
+        ]);
     }
 }
