@@ -18,7 +18,7 @@
             <tbody>
                 @foreach($reports as $report)
                 <tr>
-                    <td>{{ $loop->increment }}</td>
+                    <td>{{ $loop->iteration }}</td>
                     <td>{{ $report->date }}</td>
                     <td>{{ $report->note }}</td>
                 </tr>

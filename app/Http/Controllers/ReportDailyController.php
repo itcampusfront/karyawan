@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Divisi;
+use App\Models\Attendance;
 use App\Models\ReportDaily;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,6 +17,8 @@ class ReportDailyController extends Controller
      */
     public function index()
     {
+
+        $cek_sudah_absen = Attendance::select('id')->where('user_id', Auth::user()->id)->where('date', date('Y-m-d'))->where('exit_at','!=', null)->orderBy('id','desc')->first();
         $cek_date = ReportDaily::where('user_id', Auth::user()->id)->where('date',date('Y-m-d'))->first();
         $position_job = Auth::user()->jabatanAttribute->divisi;
         if($cek_date && $position_job->id != 18){
@@ -36,14 +40,16 @@ class ReportDailyController extends Controller
                 'count' => $count != null ? $count : 0,
                 'detail_job' => $detail_job != null ? $detail_job : [],
                 'position_job' => $position_job != null ? $position_job : [],
-                'reports' => $report_decode
+                'reports' => $report_decode,
+                'cek_absen' => $cek_sudah_absen
             ]);
         }else{
             return view('member.report.index',[
                 'count' => null ,
                 'status' => $status,
                 'data'=>$cek_date,
-                'reports' => $report_decode
+                'reports' => $report_decode,
+                'cek_absen' => $cek_sudah_absen
             ]);
         }
 
@@ -57,10 +63,11 @@ class ReportDailyController extends Controller
      */
     public function store(Request $request)
     {
+
         // dd($request->all());
         $cek_date = ReportDaily::where('user_id', Auth::user()->id)->where('date',date('Y-m-d'))->first();
-
-        if($cek_date){
+        $cekAR = Divisi::where('id',18)->first();
+        if($cek_date && $cekAR->id != Auth::user()->jabatanAttribute->division_id){
             // dd('true');
             return redirect()->route('member.reportDaily.index')->with(['message' => 'Data sudah ada.']);
         }
@@ -74,10 +81,13 @@ class ReportDailyController extends Controller
                 $array_save[$i]['id_tugas'] = $id_report[$i];
                 $array_save[$i]['score'] = $score[$i];
             }
-    
+
+            $cek = Attendance::select('id')->where('user_id', Auth::user()->id)->where('date', date('Y-m-d'))->orderBy('id','desc')->first();
+            
             $daily = new ReportDaily;
             $daily->user_id = Auth::user()->id;
             $daily->division_id = $division_id;
+            $daily->attendance_id = $cek->id;
             $daily->note = $note;
             $daily->date = date('Y-m-d');
             $daily->report = json_encode($array_save);
