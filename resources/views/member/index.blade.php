@@ -28,7 +28,8 @@
             @include('member.komponen.card', ['title' => 'Izin Tidak Hadir', 'icon' => 'bi-envelope-open', 'route' => route('member.absent.index')])
             @include('member.komponen.card', ['title' => 'Laporan Harian', 'icon' => 'bi bi-tv', 'route' => route('member.reportDaily.index')])
             @include('member.komponen.card', ['title' => 'Monitoring Absensi', 'icon' => 'bi bi-tv', 'route' => route('member.monitoring.index')])
-            @include('member.komponen.card', ['title' => 'Riwayat DAP', 'icon' => 'bi bi-list-check', 'route' => route('member.reportDaily.reportlist')])
+            @include('member.komponen.card', ['title' => 'Profil Karyawan', 'icon' => 'bi bi-list-check', 'route' => route('member.profile')])
+            {{-- @include('member.komponen.card', ['title' => 'Riwayat DAP', 'icon' => 'bi bi-list-check', 'route' => route('member.reportDaily.reportlist')]) --}}
 
             <a href="#" class="col-md-4 col-sm-6 mb-3 mb-md-0 card-menu d-none">
                 <div class="card h-100 card-hover text-center">

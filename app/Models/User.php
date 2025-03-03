@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\ReportDaily;
+use App\Models\RelationUser;
 use App\Models\JabatanAttribute;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
@@ -40,7 +41,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
+    public function relationUser()
+    {
+        return $this->hasMany(RelationUser::class);
+    }
     public function jabatanAttribute(){
         return $this->hasOne(JabatanAttribute::class);
     }
@@ -101,4 +105,5 @@ class User extends Authenticatable
     {
         return $this->hasMany(\App\Models\UserDebtFund::class);
     }
+    
 }

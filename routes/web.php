@@ -22,6 +22,10 @@ Route::group(['middleware' => ['member']], function(){
 	// Dashboard
     Route::get('/member', 'DashboardController@index')->name('member.dashboard');
 
+	//profil
+	Route::get('/member/profile','UserController@profile')->name('member.profile');
+	Route::get('/member/profile/edit','UserController@edit')->name('member.profile.edit');
+	Route::post('/member/profile/update','UserController@update')->name('member.profile.update');
 	// Position
 	Route::get('/member/position', 'PositionController@index')->name('member.position.index');
 

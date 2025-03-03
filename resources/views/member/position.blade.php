@@ -3,6 +3,7 @@
 @section('title', 'Deskripsi Jabatan')
 
 @section('content')
+<a href="/member" class="btn btn-warning mt-2 mb-2" data-bs-toggle="tooltip" title="Edit"> <i class="bi-arrow-left"></i> Kembali</a>
 
 <div class="card">
     <div class="card-header"><h5 class="mb-0">Deskripsi Jabatan</h5></div>

@@ -6,7 +6,32 @@ use App\Models\Attendance;
 use App\Models\Role;
 use App\Models\Setting;
 
+if(!function_exists('gender')) {
+    function gender(){
+        
+        $gender = [
+            ['key' => 'L', 'name'=> 'Laki-laki'],
+            ['key'=> 'P', 'name' => 'Perempuan']
+        ];
 
+        return $gender;
+    }
+}
+if(!function_exists('relationships')) {
+    function relationships(){
+        
+        $relationships = [
+            1 => 'Orang Tua',
+            2 => 'Saudara Kandung',
+            3 => 'Suami/Istri',
+            4 => 'Teman Dekat',
+            5 => 'Tetangga',
+            6 => 'Lainnya'
+        ];
+
+        return $relationships;
+    }
+}
 if(!function_exists('change')) {
     function change($date){
 

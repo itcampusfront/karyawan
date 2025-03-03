@@ -3,7 +3,7 @@
 @section('title', 'Izin Tidak Hadir')
 
 @section('content')
-
+<a href="/member" class="btn btn-warning mt-2 mb-2" data-bs-toggle="tooltip" title="Edit"> <i class="bi-arrow-left"></i> Kembali</a>
 <div class="card">
     <div class="card-header"><h5 class="text-center mb-0">Hari ini tidak hadir kenapa?</h5></div>
     <div class="card-body">

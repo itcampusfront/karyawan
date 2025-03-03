@@ -9,7 +9,7 @@
 
     @include('layouts/_navbar')
 
-    @if(Auth::user()->end_date == null)
+    @if(Auth::user()->status == 1)
     <div class="container mt-5">
         @yield('content')
     </div>

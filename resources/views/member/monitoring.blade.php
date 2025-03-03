@@ -3,7 +3,7 @@
 @section('title', 'Rekap Absensi')
 
 @section('content')
-
+<a href="/member" class="btn btn-warning mt-2 mb-2" data-bs-toggle="tooltip" title="Edit"> <i class="bi-arrow-left"></i> Kembali</a>
 <div class="card">
     <div class="card-header d-sm-flex justify-content-between align-items-center">
         <form id="form-filter" class="d-lg-flex" method="get" action="">
