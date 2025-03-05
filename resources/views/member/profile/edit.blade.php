@@ -21,7 +21,7 @@
                             <hr>
                             <x-form.input label="Nama" name="name" value="{{ $user->name }}" :isRequired="true" :readonly="true" />
 
-                            <x-form.input label="Nomor Induk Keluarga" name="nik"
+                            <x-form.input label="Nomor Induk Kependudukan" name="nik"
                                 :isRequired="true" value="{{ $user->relationUser[0]->nik ?? null }}" />
 
                             <x-form.input label="Email" type="email" name="email" value="{{ $user->email }}"

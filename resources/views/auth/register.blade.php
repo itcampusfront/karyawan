@@ -39,7 +39,7 @@
                                 <h3>Informasi Pribadi</h3>
                                 <hr>
                                 <x-form.input label="Nama" name="name" value="{{ old('name') }}" :isRequired="true" />
-                                <x-form.input label="Nomor Induk Keluarga" name="nik" :isRequired="true"
+                                <x-form.input label="Nomor Induk Kependudukan" name="nik" :isRequired="true"
                                     value="{{ old('nik') }}" />
                                 <x-form.input label="Email" type="email" name="email" value="{{ old('email') }}"
                                     :isRequired="true" />

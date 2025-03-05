@@ -62,7 +62,7 @@
                                 <span>{{ $user->identity_number ?? '-' }}</span>
                             </li>
                             <li class="list-group-item d-flex justify-content-between p-1">
-                                <span class="font-weight-bold">Nomor Induk Keluarga</span>
+                                <span class="font-weight-bold">Nomor Induk Kependudukan</span>
                                 <span>{{ isset($user->relationUser[0]) ? $user->relationUser[0]->nik : '-' }}</span>
                             </li>
                             @if ($user->role_id == role('member'))
