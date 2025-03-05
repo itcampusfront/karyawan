@@ -60,4 +60,7 @@ Route::group(['middleware' => ['guest']], function(){
     // Login
     Route::get('/login', 'LoginController@show')->name('auth.login');
     Route::post('/login', 'LoginController@authenticate')->name('auth.post-login');
+
+    Route::get('/register', 'LoginController@register')->name('auth.register');
+    Route::post('/register', 'LoginController@registerStore')->name('auth.register.store');
 });

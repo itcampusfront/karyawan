@@ -17,8 +17,10 @@ class Input extends Component
     public $placeholder;
     public $classField;
     public $classLabel;
+    public $readonly;
+    public $disabled;
 
-    public function __construct($label, $name, $placeholder = '', $value = '', $classField = 'col-lg-10 col-md-9', $classLabel = 'col-lg-2 col-md-3', $type = 'text', $isRequired = false, $textarea = false, $isDate = false)
+    public function __construct($label, $name, $placeholder = '', $value = '', $classField = 'col-lg-10 col-md-9', $classLabel = 'col-lg-2 col-md-3', $type = 'text',$disabled = false, $readonly = false , $isRequired = false, $textarea = false, $isDate = false)
     {
         $this->label = $label;
         $this->classField = $classField;
@@ -30,6 +32,8 @@ class Input extends Component
         $this->value = $value;
         $this->type = $type;
         $this->isRequired = $isRequired;
+        $this->readonly = $readonly;
+        $this->disabled = $disabled;
     }
 
     /**

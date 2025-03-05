@@ -9,7 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://ajifatur.github.io/assets/spandiv.css">
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Log in</title>
     <style>
         body, body main {
@@ -49,6 +49,7 @@
                             @endif
                         </div>
                         <button class="w-100 btn btn-primary" type="submit">Log in</button>
+                        <small>Belum Punya Akun? daftar <a href="{{ route('auth.register') }}">disini</a> </small>
                     </form>
                 </div>
                 <div class="col-12 col-lg-6 d-none d-lg-block">
@@ -64,5 +65,29 @@
         // Enable Everywhere
         Spandiv.EnableEverywhere();
     </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            @if(session('success'))
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Berhasil!',
+                    text: '{{ session('success') }}',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'OK'
+                });
+            @endif
+    
+            @if(session('error'))
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: '{{ session('error') }}',
+                    confirmButtonColor: '#d33',
+                    confirmButtonText: 'OK'
+                });
+            @endif
+        });
+    </script>
+    
 </body>
 </html>

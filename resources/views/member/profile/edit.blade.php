@@ -19,10 +19,10 @@
                             <hr>
                             <h3>Informasi Pribadi</h3>
                             <hr>
-                            <x-form.input label="Nama" name="name" value="{{ $user->name }}" :isRequired="true" />
+                            <x-form.input label="Nama" name="name" value="{{ $user->name }}" :isRequired="true" :disabled="true" />
 
                             <x-form.input label="Nomor Induk Keluarga" name="nik"
-                                :isRequired="true" value="{{ $user->relationUser[0]->nik ?? null }}" />
+                                :isRequired="true" value="{{ $user->relationUser[0]->nik ?? null }}" :disabled="true" />
 
                             <x-form.input label="Email" type="email" name="email" value="{{ $user->email }}"
                                 :isRequired="true" />
