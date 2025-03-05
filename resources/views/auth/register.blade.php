@@ -23,15 +23,6 @@
             width: 75%;
             margin: auto;
         }
-        .gender{
-            width: fit-content; margin: 0 auto;
-        }
-
-        @media (max-width: 768px){
-            .gender{
-                margin-left: 0;
-            }
-        }
     </style>
 </head>
 
@@ -142,18 +133,14 @@
                                 <x-form.input label="Password" type="password" name="password" />
                                </div>
                             <hr>
+                        </div>                     
+                        <button class="w-100 btn btn-primary mb-3" type="submit">Daftar</button>
+                        <div class="text-center">
+                            <h5>Sudah Punya Akun? Masuk <a href="{{ route('auth.login') }}">disini</a> </h5>
                         </div>
-                        
-                        {{-- <hr> --}}
-                        
-                        {{-- <hr> --}}
-                        
-                        <button class="w-100 btn btn-primary" type="submit">Daftar</button>
+
                     </form>
                 </div>
-                {{-- <div class="col-12 col-lg-6 d-none d-lg-block">
-                    <img src="https://campusdigital.id/assets/images/illustration/undraw_Login_re_4vu2.svg" alt="img" class="img-fluid">
-                </div> --}}
             </div>
         </div>
     </main>
