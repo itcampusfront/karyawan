@@ -19,19 +19,19 @@
                             <hr>
                             <h3>Informasi Pribadi</h3>
                             <hr>
-                            <x-form.input label="Nama" name="name" value="{{ $user->name }}" :isRequired="true" :disabled="true" />
+                            <x-form.input label="Nama" name="name" value="{{ $user->name }}" :isRequired="true" :readonly="true" />
 
                             <x-form.input label="Nomor Induk Keluarga" name="nik"
-                                :isRequired="true" value="{{ $user->relationUser[0]->nik ?? null }}" :disabled="true" />
+                                :isRequired="true" value="{{ $user->relationUser[0]->nik ?? null }}" />
 
                             <x-form.input label="Email" type="email" name="email" value="{{ $user->email }}"
                                 :isRequired="true" />
 
                             <x-form.input label="No. HP" type="number" name="phone_number"
                                 value="{{ $user->phone_number }}" :isRequired="true" />
-                            <x-form.input label="Tanggal Lahir" name="birthdate"
-                                value="{{ date('d/m/Y', strtotime($user->birthdate)) }}" :isRequired="true"
-                                :isDate="true" />
+                            <x-form.input label="Tanggal Lahir" type="date" name="birthdate"
+                                value="{{ $user->birthdate }}" :isRequired="true"
+                                />
                             <div class="row mb-3">
                                 <label class="col-lg-2 col-md-3 col-form-label">Jenis Kelamin <span
                                         class="text-danger">*</span></label>

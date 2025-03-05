@@ -39,8 +39,6 @@ class UserController extends Controller
                 'phone_number' => 'required|numeric',
                 'birthdate' => 'required|date',
                 'gender' => 'required',
-                'address_1' => 'required|string',
-                'address_2' => 'nullable|string',
                 'username' => 'required|string|unique:users,username,' . $user->id,
                 'password' => 'nullable|string|min:6',
             ]);
@@ -55,6 +53,12 @@ class UserController extends Controller
                 'emergency_contact_address' => 'nullable|string',
             ]);
 
+            $validatedAddress = request()->validate([
+                'address_1' => 'required|string',
+                'address_2' => 'nullable|string',
+            ]);
+            $validatedUserData['address'] = json_encode($validatedAddress);
+
             $educationData = request()->validate([
                 'latest_education' => 'nullable|string',
                 'college' => 'nullable|string',
@@ -62,7 +66,7 @@ class UserController extends Controller
                 'jurusan' => 'nullable|string',
                 'tahun' => 'nullable|numeric',
             ]);
-            $validatedUserData['birthdate'] = Carbon::createFromFormat('m/d/Y', request('birthdate'))->format('Y-m-d');
+            // $validatedUserData['birthdate'] = Carbon::createFromFormat('m/d/Y', request('birthdate'))->format('Y-m-d');
             $validatedUserData['latest_education'] = json_encode($educationData);
 
             if (!empty($validatedUserData['password'])) {

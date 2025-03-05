@@ -93,7 +93,7 @@ class LoginController extends Controller
                 'name' => 'required|string|max:255',
                 'email' => 'required|email|unique:users,email',
                 'phone_number' => 'required|numeric',
-                'birthdate' => 'required|date_format:d/m/Y',
+                'birthdate' => 'required',
                 'gender' => 'required|in:L,P',
                 'username' => 'required|string|unique:users,username',
                 'password' => 'required|string|min:8',
@@ -120,7 +120,7 @@ class LoginController extends Controller
             ]);
         
             // Konversi format birthdate
-            $validatedData['birthdate'] = Carbon::createFromFormat('d/m/Y', $validatedData['birthdate'])->format('Y-m-d');
+            // $validatedData['birthdate'] = Carbon::createFromFormat('d/m/Y', $validatedData['birthdate'])->format('Y-m-d');
         
             // Simpan data ke tabel users
             $user = User::create([

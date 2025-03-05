@@ -80,7 +80,7 @@
                                 </li>
                                 @php
                                     $decoded_address = json_decode($user->address, true);
-
+                                    
                                     if (json_last_error() === JSON_ERROR_NONE) {
                                         $address_1 = !empty($decoded_address['address_1'])
                                             ? $decoded_address['address_1']

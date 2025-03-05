@@ -39,13 +39,13 @@
                                 <h3>Informasi Pribadi</h3>
                                 <hr>
                                 <x-form.input label="Nama" name="name" value="{{ old('name') }}" :isRequired="true" />
-                                <x-form.input label="Nomor Induk Keluarga" name="nik" :isRequired="true"
+                                <x-form.input label="Nomor Induk Keluarga" type="number" name="nik" :isRequired="true"
                                     value="{{ old('nik') }}" />
                                 <x-form.input label="Email" type="email" name="email" value="{{ old('email') }}"
                                     :isRequired="true" />
                                 <x-form.input label="No. HP" type="number" name="phone_number"
                                     value="{{ old('phone_number') }}" :isRequired="true" />
-                                <x-form.input label="Tanggal Lahir" name="birthdate" value="{{ old('birthdate') }}"
+                                <x-form.input label="Tanggal Lahir" type="date" name="birthdate" value="{{ old('birthdate') }}"
                                     :isRequired="true" :isDate="true" />
                                 <div class="row mb-3">
                                     <label class="col-lg-2 col-md-3 col-form-label py-0">Jenis Kelamin <span class="text-danger">*</span></label>
