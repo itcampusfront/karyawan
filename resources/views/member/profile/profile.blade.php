@@ -142,6 +142,10 @@
                                     <span>{{ isset($user->relationUser[0]) ? $user->relationUser[0]->emergency_contact_name : '-' }}</span>
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between p-1">
+                                    <span class="font-weight-bold">Hubungan dengan Kontak Darurat:</span>
+                                    <span>{{ isset($user->relationUser[0]) ? convGender($user->relationUser[0]->emergency_contact_relationship) : '-' }}</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between p-1">
                                     <span class="font-weight-bold">No. Kontak Darurat:</span>
                                     <span>{{ isset($user->relationUser[0]) ? $user->relationUser[0]->emergency_contact_phone : '-' }}</span>
                                 </li>
@@ -164,16 +168,29 @@
 @endsection
 
 @section('js')
-    @if(session('success'))
-        <script>
-            Swal.fire({
-                title: 'Success!',
-                text: '{{ session('success') }}',
-                icon: 'success',
-                confirmButtonText: 'OK'
-            });
-        </script>
-    @endif
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            @if(session('success'))
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Berhasil!',
+                    text: '{{ session('success') }}',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'OK'
+                });
+            @endif
+    
+            @if(session('error'))
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: '{{ session('error') }}',
+                    confirmButtonColor: '#d33',
+                    confirmButtonText: 'OK'
+                });
+            @endif
+        });
+    </script>
     <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
 

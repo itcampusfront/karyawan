@@ -39,7 +39,7 @@
                                 <h3>Informasi Pribadi</h3>
                                 <hr>
                                 <x-form.input label="Nama" name="name" value="{{ old('name') }}" :isRequired="true" />
-                                <x-form.input label="Nomor Induk Keluarga" type="number" name="nik" :isRequired="true"
+                                <x-form.input label="Nomor Induk Keluarga" name="nik" :isRequired="true"
                                     value="{{ old('nik') }}" />
                                 <x-form.input label="Email" type="email" name="email" value="{{ old('email') }}"
                                     :isRequired="true" />
@@ -81,13 +81,10 @@
                                     <hr>
                                     <x-form.input label="Ijasah Terakhir" name="latest_education"
                                         value="{{ old('latest_education') }}" :textarea="true" :isRequired="true" />
-                                    <x-form.input label="Perguruan Tinggi" name="college" value="{{ old('college') }}"
-                                        :isRequired="true" />
-                                    <x-form.input label="Fakultas" name="faculty" value="{{ old('faculty') }}"
-                                        :isRequired="true" />
-                                    <x-form.input label="Jurusan" name="jurusan" value="{{ old('jurusan') }}" :isRequired="true" />
-                                    <x-form.input label="Tahun Masuk" type="number" name="tahun" value="{{ old('tahun') }}"
-                                        :isRequired="true" />
+                                    <x-form.input label="Perguruan Tinggi" name="college" value="{{ old('college') }}" />
+                                    <x-form.input label="Fakultas" name="faculty" value="{{ old('faculty') }}" />
+                                    <x-form.input label="Jurusan" name="jurusan" value="{{ old('jurusan') }}" />
+                                    <x-form.input label="Tahun Masuk" type="number" name="tahun" value="{{ old('tahun') }}"  />
                                 </div>
                                <div class="col-12">
                                 <h3>Hubungan Relasi</h3>
@@ -144,6 +141,7 @@
             </div>
         </div>
     </main>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
@@ -153,6 +151,21 @@
     <script>
         // Enable Everywhere
         Spandiv.EnableEverywhere();
+        document.addEventListener("DOMContentLoaded", function () {
+            const nikInput = document.querySelector("input[name='nik']");
+
+            if (nikInput) {
+                nikInput.addEventListener("input", function () {
+                    // Hanya izinkan angka
+                    this.value = this.value.replace(/\D/g, "");
+                    
+                    // Batasi maksimal 16 digit
+                    if (this.value.length > 16) {
+                        this.value = this.value.slice(0, 16);
+                    }
+                });
+            }
+        });
     </script>
 </body>
 

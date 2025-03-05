@@ -75,11 +75,11 @@
                             <x-form.input label="Ijasah Terakhir" name="latest_education"
                                 value="{{ $education->latest_education ?? null }}" :textarea="true" :isRequired="true"/>
                             <x-form.input label="Perguruan Tinggi" name="college"
-                                value="{{ $education->college ?? null }}" :isRequired="true"/>
-                            <x-form.input label="Fakultas" name="faculty" value="{{ $education->faculty ?? null }}" :isRequired="true"/>
-                            <x-form.input label="Jurusan" name="jurusan" value="{{ $education->jurusan ?? null }}" :isRequired="true"/>
+                                value="{{ $education->college ?? null }}" />
+                            <x-form.input label="Fakultas" name="faculty" value="{{ $education->faculty ?? null }}" />
+                            <x-form.input label="Jurusan" name="jurusan" value="{{ $education->jurusan ?? null }}" />
                             <x-form.input label="Tahun Masuk" type="number" name="tahun"
-                                value="{{ $education->tahun ?? null }}" :isRequired="true"/>
+                                value="{{ $education->tahun ?? null }}" />
 
                             <hr>
                             <h3>Hubungan Relasi</h3>
@@ -171,6 +171,22 @@
                 });
             });
         }
+        document.addEventListener("DOMContentLoaded", function () {
+            const nikInput = document.querySelector("input[name='nik']");
+
+            if (nikInput) {
+                nikInput.addEventListener("input", function () {
+                    // Hanya izinkan angka
+                    this.value = this.value.replace(/\D/g, "");
+                    
+                    // Batasi maksimal 16 digit
+                    if (this.value.length > 16) {
+                        this.value = this.value.slice(0, 16);
+                    }
+                });
+            }
+        });
+
     </script>
 
 @endsection

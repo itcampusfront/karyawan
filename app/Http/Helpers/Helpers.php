@@ -17,6 +17,17 @@ if(!function_exists('gender')) {
         return $gender;
     }
 }
+if(!function_exists('convGender')) {
+    function convGender($key){
+        if($key == 1) return 'Orang Tua';
+        if($key == 2) return 'Saudara Kandung';
+        if($key == 3) return 'Suami/Istri';
+        if($key == 4) return 'Teman Dekat';
+        if($key == 5) return 'Tetangga';
+        if($key == 6) return 'Lainnya';
+        else return null;
+    }
+}
 if(!function_exists('relationships')) {
     function relationships(){
         
